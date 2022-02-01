@@ -44,8 +44,7 @@ Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::clas
 Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])
     ->name('dashboard-account');
 
-Route::get('/dashboard-shop', [ShopDashboardController::class, 'index'])
-    ->name('dashboard-shop');
+
 Route::get('/dashboard-shop/products', [DashboardProductController::class, 'index'])
     ->name('dashboard-shop-products');
 Route::get('/dashboard-shop/products/create', [DashboardProductController::class, 'create'])
@@ -58,6 +57,11 @@ Route::get('/dashboard-shop/transactions/{id}', [ShopDashboardTransactionControl
     ->name('dashboard-shop-transaction-details');
 Route::get('/dashboard-shop/account', [ShopDashboardSettingController::class, 'account'])
     ->name('dashboard-shop-account');
+
+Route::prefix('shop')
+    ->group(function() {
+        Route::get('/', [ShopDashboardController::class, 'index'])->name('dashboard-shop');
+});
 
     // ->middleware(['auth', 'admin'])
 Route::prefix('admin')
