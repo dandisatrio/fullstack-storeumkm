@@ -161,6 +161,14 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
+                <label for="districts">Kecamatan</label>
+                <select name="districts" id="districts" class="form-control">
+                  <option value="">Bandung</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
                 <label for="zip_code">Kode Pos</label>
                 <input
                   type="text"

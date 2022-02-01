@@ -9,4 +9,8 @@ class ShopController extends Controller
     public function index() {
         return view('pages.shop');
     }
+
+    public function detail() {
+        return view('pages.shop-detail');
+    }
 }

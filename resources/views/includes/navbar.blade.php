@@ -24,10 +24,10 @@
             <a class="nav-link" href="{{ route('shops') }}">Shops</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="signup.html">Sign Up</a>
+            <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-success px-5 text-white" href="signin.html"
+            <a class="btn btn-success px-5 text-white" href="{{ route('login') }}"
               >Sign In</a
             >
           </li>

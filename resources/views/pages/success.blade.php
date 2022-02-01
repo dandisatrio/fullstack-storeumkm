@@ -18,7 +18,7 @@
                 <a target="_blank" class="btn btn-success w-50 mt-4" href="#">
                     WhatsApp Admin
                 </a>
-                <a class="btn btn-outline-info w-50 mt-2" href="/dashboard-user.html">
+                <a class="btn btn-outline-info w-50 mt-2" href="{{ route('dashboard') }}">
                     My Dashboard
                 </a>
                 </div>

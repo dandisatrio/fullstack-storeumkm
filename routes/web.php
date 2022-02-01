@@ -12,7 +12,6 @@ use App\Http\Controllers\Shop\DashboardProductController;
 use App\Http\Controllers\Shop\DashboardSettingController as ShopDashboardSettingController;
 use App\Http\Controllers\Shop\DashboardTransactionController as ShopDashboardTransactionController;
 use App\Http\Controllers\ShopController;
-use App\Http\Controllers\ShopDetailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,12 +26,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shops', [ShopController::class, 'index'])->name('shops');
-Route::get('/shop-details/{id}', [ShopDetailController::class, 'index'])->name('shop-details');
+Route::get('/shop-details/{id}', [ShopController::class, 'detail'])->name('shop-details');
 Route::get('/product-details/{id}', [ProductDetailController::class, 'index'])->name('product-details');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/success', [CartController::class, 'success'])->name('success');
-
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
