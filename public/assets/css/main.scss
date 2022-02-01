@@ -1,0 +1,14 @@
+@import "global";
+@import "fonts";
+
+@import "pages/home";
+@import "pages/detail-product";
+@import "pages/cart";
+@import "pages/success";
+@import "pages/dashboard";
+
+@import "navbar/navbar-home";
+@import "navbar/navbar-dashboard";
+
+@import "components/product";
+@import "components/breadcrumb";

@@ -1,0 +1,36 @@
+body {
+  font-family: "Poppins", sans-serif;
+
+  .nav-item {
+    color: #fff;
+  }
+}
+
+.page-content {
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+
+footer {
+  background-color: #078287;
+  padding: 20px;
+
+  a {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 15px;
+    color: #fff;
+
+    &:hover {
+      text-decoration: none;
+      color: #b3d7d8;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+  }
+}

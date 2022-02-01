@@ -1,0 +1,44 @@
+.navbar-store {
+  background-color: #078287;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.75);
+
+  .navbar-brand {
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .nav-link,
+  .navbar-light {
+    color: #fff !important;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 10px;
+  }
+
+  .active {
+    font-weight: 600 !important;
+  }
+
+  .navbar-hr {    
+    margin-left: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.425);
+  }
+
+  .profile-picture {
+    max-height: 40px;
+  }
+
+  .cart-badge {
+    display: inline-block;
+    min-width: 2em; /* em unit */
+    padding: 0.3em; /* em unit */
+    border-radius: 50%;
+    font-size: 10px;
+    text-align: center;
+    background: #29a867;
+    color: #fefefe;
+    margin-left: -10px;
+  }
+}

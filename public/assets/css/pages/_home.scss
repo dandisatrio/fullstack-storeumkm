@@ -1,0 +1,15 @@
+.shop-container {
+    .card {
+        margin: 10px 0 10px 0;
+        
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+    a {
+        text-align: center;
+        font-size: 18px;
+        color: #000000;
+        text-decoration: none;
+    }
+}
