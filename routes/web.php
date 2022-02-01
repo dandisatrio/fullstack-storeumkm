@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
@@ -57,6 +58,12 @@ Route::get('/dashboard-shop/transactions/{id}', [ShopDashboardTransactionControl
     ->name('dashboard-shop-transaction-details');
 Route::get('/dashboard-shop/account', [ShopDashboardSettingController::class, 'account'])
     ->name('dashboard-shop-account');
+
+    // ->middleware(['auth', 'admin'])
+Route::prefix('admin')
+    ->group(function() {
+        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+    });
 
 Auth::routes();
 
