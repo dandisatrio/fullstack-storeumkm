@@ -58,7 +58,7 @@ Route::get('/dashboard-shop/transactions/{id}', [ShopDashboardTransactionControl
 Route::get('/dashboard-shop/account', [ShopDashboardSettingController::class, 'account'])
     ->name('dashboard-shop-account');
 
-Route::prefix('shop')
+Route::prefix('seller')
     ->group(function() {
         Route::get('/', [ShopDashboardController::class, 'index'])->name('dashboard-shop');
 });

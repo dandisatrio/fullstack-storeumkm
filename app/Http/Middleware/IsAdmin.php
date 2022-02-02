@@ -19,7 +19,7 @@ class IsAdmin
     {
         if(Auth::user() && Auth::user()->roles == 'ADMIN') {
             return $next($request);
-        } else if (Auth::user() && Auth::user()->roles == 'SHOP') {
+        } else if (Auth::user() && Auth::user()->roles == 'SELLER') {
             return $next($request);
         }
 
