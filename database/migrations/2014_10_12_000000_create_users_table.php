@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('districts_id')->nullable();
             $table->integer('zip_code')->nullable();
             $table->string('phone_number')->nullable();
+            $table->integer('categories_id')->nullable();
             $table->string('roles')->default('USER');
 
             $table->softDeletes();

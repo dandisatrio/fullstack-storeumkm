@@ -89,6 +89,11 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ route('category.index') }}" class="nav-link {{ (request()->is('admin/category*')) ? 'active' : ''}}">
+                  <p>Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="" class="nav-link {{ (request()->is('dashboard-admin/products*')) ? 'active' : ''}}">
                   <p>Products</p>
                 </a>
@@ -99,7 +104,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link {{ (request()->is('dashboard-admin/users*')) ? 'active' : ''}}">
+                <a href="{{ route('user.index') }}" class="nav-link {{ (request()->is('admin/user*')) ? 'active' : ''}}">
                   <p>Users</p>
                 </a>
               </li>
@@ -133,5 +138,7 @@
     @include('includes.scripts-auth')
     @stack('prepend-scripts')
     @stack('addon-scripts')
+    
+
   </body>
 </html>

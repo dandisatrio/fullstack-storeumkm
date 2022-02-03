@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
@@ -26,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/shops', [ShopController::class, 'index'])->name('shops');
 Route::get('/shop-details/{id}', [ShopController::class, 'detail'])->name('shop-details');
 Route::get('/product-details/{id}', [ProductDetailController::class, 'index'])->name('product-details');
@@ -67,6 +71,8 @@ Route::prefix('seller')
 Route::prefix('admin')
     ->group(function() {
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+        Route::resource('category', AdminCategoryController::class);
+        Route::resource('user', UserController::class);
     });
 
 Auth::routes();
