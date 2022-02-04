@@ -99,6 +99,11 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ route('product-gallery.index') }}" class="nav-link {{ (request()->is('admin/gallery*')) ? 'active' : ''}}">
+                  <p>Gallery</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="" class="nav-link {{ (request()->is('dashboard-admin/transactions*')) ? 'active' : ''}}">
                   <p>Transactions</p>
                 </a>
