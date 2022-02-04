@@ -94,7 +94,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link {{ (request()->is('dashboard-admin/products*')) ? 'active' : ''}}">
+                <a href="{{ route('product.index') }}" class="nav-link {{ (request()->is('admin/product*')) ? 'active' : ''}}">
                   <p>Products</p>
                 </a>
               </li>
