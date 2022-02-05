@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shop extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'photo', 'name', 'slug', 'users_id'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id', 'id');
+    }
 }

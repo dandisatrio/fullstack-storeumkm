@@ -59,7 +59,7 @@
             columns: [
                 { data: 'id', name: 'id'},
                 { data: 'name', name: 'name'},
-                { data: 'user.name', name: 'user.name'},
+                { data: 'shop.name', name: 'shop.name'},
                 { data: 'category.name', name: 'category.name'},
                 { data: 'price', name: 'price'},
                 { 

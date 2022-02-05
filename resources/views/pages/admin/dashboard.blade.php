@@ -20,11 +20,25 @@
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-primary">
               <div class="inner">
                 <h3>{{ $customer }}</h3>
 
                 <p>Customer</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{ $seller }}</h3>
+
+                <p>SELER</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\User;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Product::with(['user', 'category']);
+            $query = Product::with(['shop', 'category']);
 
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
@@ -53,11 +53,11 @@ class ProductController extends Controller
 
     public function create()
     {
-        $users = User::all();
+        $shops = Shop::all();
         $categories = Category::all();
 
         return view('pages.admin.product.create', [
-            'users' => $users,
+            'shops' => $shops,
             'categories' => $categories
         ]);
     }
@@ -81,12 +81,12 @@ class ProductController extends Controller
     public function edit($id)
     {
         $item = Product::findOrFail($id);
-        $users = User::all();
+        $shops = Shop::all();
         $categories = Category::all();
 
         return view('pages.admin.product.edit', [
             'item' => $item,
-            'users' => $users,
+            'shops' => $shops,
             'categories' => $categories
         ]);
     }

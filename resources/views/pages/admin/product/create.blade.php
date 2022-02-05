@@ -41,9 +41,9 @@
                         <div class="col-md-12">
                           <div class="form-group mb-2">
                             <label>Pemilik Product</label>
-                            <select name="users_id" id="" class="form-control">
-                              @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <select name="shops_id" id="" class="form-control">
+                              @foreach ($shops as $shop)
+                                <option value="{{ $shop->id }}">{{ $shop->name }}</option>
                               @endforeach
                             </select>
                           </div>
