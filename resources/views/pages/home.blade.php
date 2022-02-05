@@ -40,90 +40,22 @@
           </div>
         </div>
         <div class="row">
+          @forelse ($shops as $shop)
           <div class="col-6 col-md-3 col-lg-2">
-            <a href="detail-shop.html">
-              <div class="card" style="width: 11rem">
-                <img
-                  src="assets/images/shopee.jpeg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <p class="card-text">elektronik.id</p>
+            <a href="detail-shop.html" class="component-categories d-block">
+                <div class="categories-image">
+                  <img src="{{ Storage::url($shop->photo) }}" alt="" class="w-100">
                 </div>
-              </div>
+                <p class="categories-text">
+                    {{ $shop->name }}
+                </p>
             </a>
           </div>
-          <div class="col-6 col-md-3 col-lg-2">
-            <a href="detail-shop.html">
-              <div class="card" style="width: 11rem">
-                <img
-                  src="assets/images/shopee.jpeg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <p class="card-text">elektronik.id</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-6 col-md-3 col-lg-2">
-            <a href="detail-shop.html">
-              <div class="card" style="width: 11rem">
-                <img
-                  src="assets/images/shopee.jpeg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <p class="card-text">elektronik.id</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-6 col-md-3 col-lg-2">
-            <a href="detail-shop.html">
-              <div class="card" style="width: 11rem">
-                <img
-                  src="assets/images/shopee.jpeg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <p class="card-text">elektronik.id</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-6 col-md-3 col-lg-2">
-            <a href="detail-shop.html">
-              <div class="card" style="width: 11rem">
-                <img
-                  src="assets/images/shopee.jpeg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <p class="card-text">elektronik.id</p>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div class="col-6 col-md-3 col-lg-2">
-            <a href="detail-shop.html">
-              <div class="card" style="width: 11rem">
-                <img
-                  src="assets/images/shopee.jpeg"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <p class="card-text">elektronik.id</p>
-                </div>
-              </div>
-            </a>
-          </div>
+          @empty
+            <div class="col-6 text-center py-5">
+              No Shop Found
+            </div>
+          @endforelse
         </div>
       </div>
     </section>
