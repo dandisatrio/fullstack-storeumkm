@@ -40,7 +40,7 @@
 
         @auth
         <!-- Desktop Menu -->
-        <ul class="navbar-nav navbar-hr d-none d-lg-flex">
+        <ul class="navbar-nav d-none d-lg-flex">
           <li class="nav-item dropdown">
             <a
               class="nav-link"
@@ -52,7 +52,7 @@
               aria-expanded="false"
             >
               <img
-                src="/assets/images/icon-user.png"
+                src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
                 alt=""
                 class="rounded-circle mr-2 profile-picture"
               />

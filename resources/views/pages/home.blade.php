@@ -3,7 +3,7 @@
 @section('title', 'Home | Store UMKM Negeri Katon')
 
 @section('content')
-  <div class="page-content page-home">
+  <div class="page-content">
     <section class="store-trend-categories mb-3">
       <div class="container">
         <div class="row mb-3">
