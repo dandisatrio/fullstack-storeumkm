@@ -42,7 +42,7 @@
         <div class="row">
           @forelse ($shops as $shop)
           <div class="col-6 col-md-3 col-lg-2">
-            <a href="detail-shop.html" class="component-categories d-block">
+            <a href="{{ route('shop-details', $shop->slug) }}" class="component-categories d-block">
                 <div class="categories-image">
                   <img src="{{ Storage::url($shop->photo) }}" alt="" class="w-100">
                 </div>

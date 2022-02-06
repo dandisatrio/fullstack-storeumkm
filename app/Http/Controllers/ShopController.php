@@ -2,15 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index() {
-        return view('pages.shop');
+    public function index() 
+    {
+        $shops = Shop::paginate(32);
+        return view('pages.shop', [
+            'shops' => $shops
+        ]);
     }
 
-    public function detail() {
-        return view('pages.shop-detail');
+    public function detail(Request $request, $id) 
+    {
+        $shop = Shop::all()->where('slug', $id)->firstOrFail();
+        $products = Product::with(['galleries', 'shop'])->where('shops_id', $shop->id)->paginate(16);
+
+        return view('pages.shop-detail', [
+            'shop' => $shop,
+            'products' => $products
+        ]);
     }
 }
