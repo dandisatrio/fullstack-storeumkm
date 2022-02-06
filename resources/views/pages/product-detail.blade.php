@@ -61,21 +61,33 @@
         </div>
       </div>
     </section>
-    <div class="store-details-container mt-2">
+    <div class="store-details-container mt-4">
       <section class="store-heading">
         <div class="container">
           <div class="row">
             <div class="col-lg-8">
-              <h1>Sofa Ternyaman</h1>
-              <div class="owner">By User Toko</div>
-              <div class="price">Rp.12.000.000</div>
+              <h1>{{ $product->name }}</h1>
+              <div class="owner">By {{ $product->shop->name }}</div>
+              <div class="price">Rp. {{ number_format($product->price, 0, ',', '.') }}</div>
             </div>
             <div class="col-lg-2" data-aos="zoom-in">
+              @auth
+              <form action="{{ route('product-detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <button
+                  type="submit"
+                  class="btn btn-success nav-link px-4 text-white btn-block mb-3"
+                  href="{{ route('cart') }}"
+                  >Add to Cart
+                </button>
+              </form>
+              @else
               <a
                 class="btn btn-success nav-link px-4 text-white btn-block mb-3"
-                href="{{ route('cart') }}"
-                >Add to Cart</a
-              >
+                href="{{ route('login') }}"
+                >Sign in to add
+              </a>
+              @endauth              
             </div>
           </div>
         </div>
@@ -84,12 +96,7 @@
         <div class="container">
           <div class="row">
             <div class="col-12 col-lg-8">
-              <p>
-                The Nike Air Max 720 SE goes bigger than ever before with
-                Nike's tallest Air unit yet for unimaginable, all-day comfort.
-                There's super breathable fabrics on the upper, while colours
-                add a modern edge.
-              </p>
+              <p>{!! $product->description !!}</p>
             </div>
           </div>
         </div>
@@ -109,22 +116,12 @@
     data: {
       activePhoto: 0,
       photos: [
+        @foreach ($product->galleries as $gallery)
         {
-          id: 1,
-          url: "/assets/images/product-detail/product-details-1.jpg",
+          id: {{ $gallery->id }},
+          url: "{{ Storage::url($gallery->photos) }}",
         },
-        {
-          id: 2,
-          url: "/assets/images/product-detail/product-details-2.jpg",
-        },
-        {
-          id: 3,
-          url: "/assets/images/product-detail/product-details-3.jpg",
-        },
-        {
-          id: 4,
-          url: "/assets/images/product-detail/product-details-4.jpg",
-        },
+        @endforeach
       ],
     },
     methods: {

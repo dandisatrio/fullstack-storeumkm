@@ -52,7 +52,7 @@
         <div
           class="col-6 col-md-4 col-lg-3"
         >
-          <a class="component-products d-block" href="/details.html">
+          <a class="component-products d-block" href="{{ route('product-detail', $product->slug) }}">
             <div class="products-thumbnail">
               <div
                 class="products-image"

@@ -37,6 +37,7 @@ Route::get('/categories/{id}', [CategoryController::class, 'detail'])->name('cat
 Route::get('/shops', [ShopController::class, 'index'])->name('shops');
 Route::get('/shop-details/{id}', [ShopController::class, 'detail'])->name('shop-details');
 Route::get('/product-details/{id}', [ProductDetailController::class, 'index'])->name('product-detail');
+Route::post('/product-details/{id}', [ProductDetailController::class, 'add'])->name('product-detail-add');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/success', [CartController::class, 'success'])->name('success');
