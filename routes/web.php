@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
@@ -41,6 +42,9 @@ Route::post('/product-details/{id}', [ProductDetailController::class, 'add'])->n
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
+
+Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
+
 Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');

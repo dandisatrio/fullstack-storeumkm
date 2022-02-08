@@ -39,7 +39,8 @@
               </thead>
               <tbody>
                 @php
-                  $totalPrice = 0
+                  $totalPrice = 0;
+                  $shipping_price = 0;
                 @endphp
                 @foreach ($carts as $cart)
                   <tr>
@@ -84,7 +85,7 @@
                   </tr>
                   @php 
                     $shipping_price = 30000;
-                    $totalPrice += $cart->product->price + rand(100, 1000);
+                    $totalPrice += $cart->product->price + rand(100, 999);
                   @endphp
                 @endforeach
               </tbody>
@@ -100,7 +101,11 @@
           </div>
         </div>
 
-        <form action="" id="locations">
+        <form action="{{ route('checkout') }}" id="locations" method="POST" enctype="multipart/form-data">
+          @csrf
+          <input type="hidden" name="total_price" value="{{ $totalPrice + 30000 }}">
+          <input type="hidden" name="shipping_price" value="{{ $shipping_price ?? 0 }}">
+
           <div class="row mb-2">
             <div class="col-md-6">
               <div class="form-group">
@@ -111,6 +116,7 @@
                   cols="65"
                   rows="1"
                   class="form-control"
+                  required
                 ></textarea>
               </div>
             </div>
@@ -123,13 +129,14 @@
                   id="phone_number"
                   name="phone_number"
                   value=""
+                  required
                 />
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="provinces_id">Provinsi</label>
-                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id">
+                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" required>
                   <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                 </select>
                 <select v-else class="form-control"></select>
@@ -138,7 +145,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="regencies_id">Kabupaten</label>
-                <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id">
+                <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id" required>
                   <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                 </select>
                 <select v-else class="form-control"></select>
@@ -147,7 +154,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="districts_id">Kecamatan</label>
-                <select name="districts_id" id="districts_id" class="form-control" v-if="districts" v-model="districts_id">
+                <select name="districts_id" id="districts_id" class="form-control" v-if="districts" v-model="districts_id" required>
                   <option v-for="district in districts" :value="district.id">@{{ district.name }}</option>
                 </select>
                 <select v-else class="form-control"></select>
@@ -162,6 +169,7 @@
                   id="zip_code"
                   name="zip_code"
                   value=""
+                  required
                 />
               </div>
             </div>
@@ -176,23 +184,24 @@
           </div>
           <div class="row">
             <div class="col-6 col-md-4">
-              <div class="product-title text-success">Rp. {{ number_format($totalPrice + $shipping_price  ?? 0) }}</div>
+              <div class="product-title text-success">Rp. {{ number_format($totalPrice + $shipping_price ?? 0) }}</div>
               <div class="product-subtitle">Total Pembayaran(+unique)</div>
             </div>
             <div class="col-6 col-md-2">
-              <div class="product-title">Rp. {{ number_format($shipping_price ) }}</div>
+              <div class="product-title">Rp. {{ number_format($shipping_price ?? 0) }}</div>
               <div class="product-subtitle">Ongkos Kirim</div>
             </div>
           </div>          
-        </form>
-        <div class="row">
-          <div class="col-6 col-md-6">
-            <h4>Media Pembayaran</h4>
-            <img src="/assets/images/bri.png" alt="" />
-            <div class="product-title">5666 1111 7777 123</div>
-            <div class="product-subtitle">Admin UMKM Negeri Katon</div>
-            <a href="{{ route('success') }}" class="btn btn-success mt-3">Checkout Now</a>
-          </div>
+          <div class="row">
+            <div class="col-6 col-md-6">
+              <h4>Media Pembayaran</h4>
+              <img src="/assets/images/bri.png" alt="" />
+              <div class="product-title">5666 1111 7777 123</div>
+              <div class="product-subtitle">Admin UMKM Negeri Katon</div>
+              <button type="submit" class="btn btn-success mt-3">Checkout Now</button>
+            </div>
+          </form>
+
           <div class="col-6 col-md-6 mt-3">
             <h2>Informasi Penting</h2>
             <p>

@@ -19,7 +19,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->integer('products_id');
             $table->integer('price');
             $table->integer('quantity');
-            $table->integer('resi');
+            $table->string('resi');
             $table->string('shipping_status'); // PENDING/SHIPPING/SUCCESS
             $table->string('code');
             
