@@ -40,6 +40,7 @@ Route::get('/product-details/{id}', [ProductDetailController::class, 'index'])->
 Route::post('/product-details/{id}', [ProductDetailController::class, 'add'])->name('product-detail-add');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
 Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');

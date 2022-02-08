@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\LocationController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/register/check', [RegisterController::class, 'check'])->name('api-register-check');
+Route::get('/provinces', [LocationController::class, 'provinces'])->name('api-provinces');
+Route::get('/regencies/{provinces_id}', [LocationController::class, 'regencies'])->name('api-regencies');
+Route::get('/districts/{regencies_id}', [LocationController::class, 'districts'])->name('api-districts');

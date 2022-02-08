@@ -15,11 +15,18 @@ class Cart extends Model
 
     ];  
 
-    public function product() {
+    public function product() 
+    {
         return $this->hasOne(Product::class, 'id', 'products_id');
     }
 
-    public function shop() {
-        return $this->belongsTo(User::class, 'id', 'users_id');
+    public function user() 
+    {
+        return $this->belongsTo(User::class, 'users_id', 'id');
+    }
+
+    public function shop() 
+    {
+        return $this->belongsTo(Shop::class, 'shops_id', 'id');
     }
 }
