@@ -83,6 +83,7 @@
                     </td>
                   </tr>
                   @php 
+                    $shipping_price = 30000;
                     $totalPrice += $cart->product->price + rand(100, 1000);
                   @endphp
                 @endforeach
@@ -175,11 +176,11 @@
           </div>
           <div class="row">
             <div class="col-6 col-md-4">
-              <div class="product-title text-success">Rp. {{ number_format($totalPrice ?? 0) }}</div>
+              <div class="product-title text-success">Rp. {{ number_format($totalPrice + $shipping_price  ?? 0) }}</div>
               <div class="product-subtitle">Total Pembayaran(+unique)</div>
             </div>
             <div class="col-6 col-md-2">
-              <div class="product-title">Rp. 30.000</div>
+              <div class="product-title">Rp. {{ number_format($shipping_price ) }}</div>
               <div class="product-subtitle">Ongkos Kirim</div>
             </div>
           </div>          
