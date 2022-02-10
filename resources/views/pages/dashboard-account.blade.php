@@ -19,7 +19,8 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-12">
-          <form action="">
+          <form action="{{ route('dashboard-account-redirect', 'dashboard-account') }}" method="POST" id="locations">
+            @csrf
             <div class="card">
               <div class="card-body">
                 <div class="row mb-2">
@@ -31,7 +32,7 @@
                         class="form-control"
                         id="name"
                         name="name"
-                        value="User"
+                        value="{{ $user->name }}"
                         required
                       />
                     </div>
@@ -45,7 +46,7 @@
                         id="email"
                         aria-describedby="emailHelp"
                         name="email"
-                        value="user@mail.com"
+                        value="{{ $user->email }}"
                         required
                       />
                     </div>
@@ -58,60 +59,59 @@
                         class="form-control"
                         id="address"
                         name="address"
-                        value="Setra Duta Cemara"
+                        value="{{ $user->address }}"
                       />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="no_telp">Nomor WhatsApp</label>
+                      <label for="phone_number">Nomor WhatsApp</label>
                       <input
                         type="text"
                         class="form-control"
-                        id="no_telp"
-                        name="no_telp"
-                        value="08111111111"
+                        id="phone_number"
+                        name="phone_number"
+                        value="{{ $user->phone_number }}"
                         required
                       />
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="provinces">Provinsi</label>
-                      <select
-                        name="provinces"
-                        id="provinces"
-                        class="form-control"
-                      >
-                        <option value="West Java">Jawa Barat</option>
+                      <label for="provinces_id">Provinsi</label>
+                      <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" required>
+                        <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                       </select>
+                      <select v-else class="form-control"></select>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="regencies">Kabupaten</label>
-                      <select name="regencies" id="regencies" class="form-control">
-                        <option value="Bandung">Bandung</option>
+                      <label for="regencies_id">Kabupaten</label>
+                      <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id" required>
+                        <option v-for="regency in regencies" :value="regency.id">@{{ regency.name }}</option>
                       </select>
+                      <select v-else class="form-control"></select>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="districts">Kecamatan</label>
-                      <select name="districts" id="districts" class="form-control">
-                        <option value="Bandung">Bandung</option>
+                      <label for="districts_id">Kecamatan</label>
+                      <select name="districts_id" id="districts_id" class="form-control" v-if="districts" v-model="districts_id" required>
+                        <option v-for="district in districts" :value="district.id">@{{ district.name }}</option>
                       </select>
+                      <select v-else class="form-control"></select>
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <label for="postalCode">Kode Pos</label>
+                      <label for="zip_code">Kode Pos</label>
                       <input
                         type="text"
                         class="form-control"
-                        id="postalCode"
-                        name="postalCode"
-                        value="40512"
+                        id="zip_code"
+                        name="zip_code"
+                        value="{{ $user->zip_code }}"
                       />
                     </div>
                   </div>
@@ -132,3 +132,57 @@
   </section>
 </div>
 @endsection
+
+@push('addon-scripts')
+  <script src="/assets/vendor/vue/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var locations = new Vue({
+      el: "#locations",
+      mounted() {
+        this.getProvincesData();
+      },
+      data: {
+        provinces: null,
+        regencies: null,
+        districts: null,
+        provinces_id: null,
+        regencies_id: null,
+        districts_id: null,
+      },
+      methods: {
+        getProvincesData() {
+          var self = this;
+          axios.get('{{ route('api-provinces') }}')
+            .then(function (response) {
+              self.provinces = response.data
+            })
+        },
+        getRegenciesData() {
+          var self = this;
+          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+            .then(function (response) {
+              self.regencies = response.data
+            })
+        },
+        getDistrictsData() {
+          var self = this;
+          axios.get('{{ url('api/districts') }}/' + self.regencies_id)
+            .then(function (response) {
+              self.districts = response.data
+            })
+        },
+      },
+      watch: {
+        provinces_id: function (val, oldVal) {
+          this.regencies_id = null;
+          this.getRegenciesData();
+        },
+        regencies_id: function (val, oldVal) {
+          this.districts_id = null;
+          this.getDistrictsData();
+        },
+      }      
+    })
+  </script>
+@endpush
