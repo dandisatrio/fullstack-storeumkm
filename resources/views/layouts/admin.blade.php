@@ -45,7 +45,10 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('home') }}l">Home</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/">Logout</a>
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
             </div>
           </li>
           <li class="nav-item">
@@ -63,7 +66,10 @@
             <a class="nav-link d-inline-block" href="{{ route('home') }}"> Home </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Logout</a>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
           </li>
         </ul>
       </nav>
@@ -94,12 +100,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('product.index') }}" class="nav-link {{ (request()->is('admin/product*')) ? 'active' : ''}}">
+                <a href="{{ route('product.index') }}" class="nav-link {{ (request()->is('admin/product')) ? 'active' : ''}}">
                   <p>Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('product-gallery.index') }}" class="nav-link {{ (request()->is('admin/gallery*')) ? 'active' : ''}}">
+                <a href="{{ route('product-gallery.index') }}" class="nav-link {{ (request()->is('admin/product-gallery*')) ? 'active' : ''}}">
                   <p>Gallery</p>
                 </a>
               </li>

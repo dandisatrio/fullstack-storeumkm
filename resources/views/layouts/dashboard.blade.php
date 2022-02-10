@@ -36,23 +36,34 @@
                 aria-expanded="false"
             >
                 <img
-                src="/assets/images/icon-user.png"
+                src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
                 alt=""
                 class="rounded-circle mr-2 profile-picture"
                 />
-                Hi, User
+                Hi, {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('home') }}">Home</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/">Logout</a>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
             </div>
             </li>
             <li class="nav-item">
-            <a class="nav-link d-inline-block mt-2" href="{{ route('cart') }}">
-                <img src="/assets/images/icon-cart-filled.svg" alt="" />
-                <div class="cart-badge">3</div>
-            </a>
+              <a class="nav-link d-inline-block mt-2" href="{{ route('cart') }}">
+                @php
+                  $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                @endphp
+                @if ($carts > 0)
+                  <img src="/assets/images/icon-cart-filled.svg" alt="" />
+                  <div class="cart-badge">{{ $carts }}</div>
+                @else
+                  <img src="/assets/images/icon-cart-empty.svg" alt="" />
+                @endif
+                
+              </a>
             </li>
         </ul>
 
@@ -68,7 +79,10 @@
             <a class="nav-link d-inline-block" href="{{ route('cart') }}"> Cart </a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="/">Logout</a>
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >Logout</a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+              </form>
             </li>
         </ul>
       </nav>
