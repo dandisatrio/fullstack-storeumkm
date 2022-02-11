@@ -19,30 +19,26 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-12 col-12">
-          <a
-            class="card card-list d-block"
-            href="/dashboard-user-transaction-details.html"
-          >
-            <div class="card-body">
-              <div class="row">
-                <div class="col-2">
-                  <img
-                    src="/assets/images/dashboard-icon-product-1.png"
-                    alt=""
-                  />
-                </div>
-                <div class="col-3 col-md-2">elektronik.id</div>
-                <div class="col-4 col-md-3">25 February 2022</div>
-                <div class="col-2 col-md-3">PENDING</div>
-                <div class="col-2 col-md-1 d-none d-sm-block">
-                  <img
-                    src="/assets/images/dashboard-arrow-right.svg"
-                    alt=""
-                  />
+          @foreach ($transaction_data as $transaction)
+            <a
+              class="card card-list d-block"
+              href="{{ route('dashboard-transaction-details', $transaction->id) }}"
+            >
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-3 col-md-2">{{ $transaction->code }}</div>
+                  <div class="col-4 col-md-3">{{ $transaction->created_at }}</div>
+                  <div class="col-2 col-md-3">Status Transaksi {{ $transaction->transaction_status }}</div>
+                  <div class="col-2 col-md-1 d-none d-sm-block">
+                    <img
+                      src="/assets/images/dashboard-arrow-right.svg"
+                      alt=""
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
           </a>
+          @endforeach
         </div>
       </div>
     </div>

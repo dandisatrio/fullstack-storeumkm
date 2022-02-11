@@ -8,7 +8,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">#STORE160222</h1>
+          <h1 class="m-0">#{{ $transaction->code }}</h1>
         </div>
       </div>
     </div>
@@ -21,41 +21,33 @@
         <div class="col-12">
           <div class="card">
             <div class="card-body">
-              <h5>elektronik.id</h5>
               <div class="row">
                 <div class="col-8">
                   <table class="table table-borderless">
                     <thead>
                       <tr>
                         <th style="width: 30%;">Image</th>
-                        <th style="width: 30%;">Nama Produk</th>
+                        <th style="width: 25%;">Nama Produk</th>
+                        <th style="width: 25%;">Nama Toko</th>
                         <th>Harga</th>
-                        <th>Quantity</th>
+                        {{-- <th>Quantity</th> --}}
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach ($products as $product)
                       <tr>
                         <td>
                           <img
-                            src="/assets/images/dashboard-icon-product-1.png"
-                            alt=""
+                            src="{{ Storage::url($product->product->galleries->first()->photos ?? '') }}"
+                            class="w-50"
                           />
                         </td>
-                        <td>Sofa Ternyaman</td>
-                        <td>Rp. 100.000</td>
-                        <td>1</td>
+                        <td>{{ $product->product->name }}</td>
+                        <td>{{ $product->product->shop->name }}</td>
+                        <td>Rp. {{ number_format($product->product->price, 0, ',', '.') }}</td>
+                        {{-- <td>1</td> --}}
                       </tr>
-                      <tr>
-                        <td>
-                          <img
-                            src="/assets/images/dashboard-icon-product-1.png"
-                            alt=""
-                          />
-                        </td>
-                        <td>Sofa Ternyaman</td>
-                        <td>Rp. 100.000</td>
-                        <td>1</td>
-                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -67,15 +59,17 @@
                     <thead>
                       <tr>
                         <th style="width: 30%;">Tanggal Transaksi</th>
-                        <th style="width: 30%;">Total Pembayaran</th>
-                        <th>Status Pembayaran</th>
+                        <th style="width: 25%;">Biaya Pengiriman</th>
+                        <th style="width: 25%;">Total Transaksi</th>
+                        <th>Status Transaksi</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>25 Februari 2022</td>
-                        <td>Rp. 200.000</td>
-                        <td><span style="color: red;">PENDING</span></td>
+                        <td>{{ $transaction->created_at }}</td>
+                        <td>Rp. {{ number_format($transaction->shipping_price, 0, ',', '.') }}</td>
+                        <td>Rp. {{ number_format($transaction->total_price, 0, ',', '.') }}</td>
+                        <td><span style="color: red;">{{ $transaction->transaction_status }}</span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -89,14 +83,14 @@
                   <table class="table table-borderless">
                     <thead>
                       <tr>
-                        <th style="width: 40%;">Alamat</th>
-                        <th style="width: 30%;">Nomor WhatsApp</th>
+                        <th style="width: 30%;">Alamat</th>
+                        <th style="width: 25%;">Nomor WhatsApp</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, tenetur!</td>
-                        <td>0811 1111 1111</td>
+                        <td>{{ $transaction->user->address }}</td>
+                        <td>{{ $transaction->user->phone_number }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -108,16 +102,18 @@
                   <table class="table table-borderless">
                     <thead>
                       <tr>
-                        <th style="width: 20%;">Provinsi</th>
-                        <th style="width: 20%;">Kabupaten</th>
-                        <th style="width: 30%;">Kode Pos</th>
+                        <th style="width: 30%;">Provinsi</th>
+                        <th style="width: 25%;">Kabupaten</th>
+                        <th style="width: 25%;">Kecamatan</th>
+                        <th style="width: 25%;">Kode Pos</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Jawa Barat</td>
-                        <td>Bandung</td>
-                        <td>123456</td>
+                        <td>{{ App\Models\Province::find($transaction->user->provinces_id)->name }}</td>
+                        <td>{{ App\Models\Regency::find($transaction->user->regencies_id)->name }}</td>
+                        <td>{{ App\Models\District::find($transaction->user->districts_id)->name }}</td>
+                        <td>{{ $transaction->user->zip_code }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -135,8 +131,8 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td style="color: red;">PENDING</td>
-                        <td>123456</td>
+                        <td style="color: red;">{{ $shippings_status }}</td>
+                        <td>{{ $resi_code }}</td>
                       </tr>
                     </tbody>
                   </table>
