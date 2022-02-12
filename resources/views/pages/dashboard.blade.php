@@ -22,7 +22,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{ number_format($expenditure, 0, ',', '.') }}</h3>
+                <h3>Rp. {{ number_format($expenditure, 0, ',', '.') }}</h3>
 
                 <p>Pengeluaran</p>
               </div>

@@ -53,10 +53,6 @@ Route::get('/dashboard-shop/products/create', [DashboardProductController::class
     ->name('dashboard-shop-product-create');
 Route::get('/dashboard-shop/products/{id}', [DashboardProductController::class, 'detail'])
     ->name('dashboard-shop-product-details');
-Route::get('/dashboard-shop/transactions', [ShopDashboardTransactionController::class, 'index'])
-    ->name('dashboard-shop-transactions');
-Route::get('/dashboard-shop/transactions/{id}', [ShopDashboardTransactionController::class, 'detail'])
-    ->name('dashboard-shop-transaction-details');
 Route::get('/dashboard-shop/account', [ShopDashboardSettingController::class, 'account'])
     ->name('dashboard-shop-account');
 
@@ -64,6 +60,10 @@ Route::prefix('seller')
     ->middleware(['auth', 'seller'])
     ->group(function() {
         Route::get('/', [ShopDashboardController::class, 'index'])->name('dashboard-shop');
+        Route::get('/dashboard-shop/transactions', [ShopDashboardTransactionController::class, 'index'])
+            ->name('dashboard-shop-transactions');
+        Route::get('/dashboard-shop/transactions/{id}', [ShopDashboardTransactionController::class, 'detail'])
+            ->name('dashboard-shop-transaction-details');
 });
 
 

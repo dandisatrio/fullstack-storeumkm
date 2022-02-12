@@ -70,7 +70,7 @@
         <!-- Mobile Menu -->
         <ul class="navbar-nav d-flex flex-row d-lg-none ml-auto">
             <li class="nav-item">
-            <a class="nav-link" href="#"> Hi, User </a>
+            <a class="nav-link" href="#"> Hi, {{ Auth::user()->name }} </a>
             </li>
             <li class="nav-item">
             <a class="nav-link d-inline-block" href="{{ route('home') }}"> Home </a>

@@ -16,25 +16,11 @@
 
     <section class="content">
       <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>5</h3>
-                <p>Customer</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person"></i>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>Rp.200.000</h3>
+                <h3>Rp. {{ $revenue }}</h3>
                 <p>Pemasukan</p>
               </div>
               <div class="icon">
@@ -42,12 +28,10 @@
               </div>
             </div>
           </div>
-          <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>5</h3>
+                <h3>{{ $transaction_count }}</h3>
                 <p>Transaksi</p>
               </div>
               <div class="icon">
@@ -56,9 +40,7 @@
             </div>
           </div>
         </div>
-        <!-- /.row (main row) -->
       </div>
-      <!-- /.container-fluid -->
     </section>
 
     <div class="content-header">
@@ -76,21 +58,16 @@
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-12 col-12">
+            @foreach ($transaction_data as $transaction)
             <a
               class="card card-list d-block"
-              href="/dashboard-transactions-details.html"
+              href="{{ route('dashboard-shop-transaction-details', $transaction->id) }}"
             >
               <div class="card-body">
                 <div class="row">
-                  <div class="col-2">
-                    <img
-                      src="/assets/images/dashboard-icon-product-1.png"
-                      alt=""
-                    />
-                  </div>
-                  <div class="col-3 col-md-2">User </div>
-                  <div class="col-4 col-md-3">25 February 2022</div>
-                  <div class="col-2 col-md-3">PENDING</div>
+                  <div class="col-3 col-md-2">{{ $transaction->code }}</div>
+                  <div class="col-4 col-md-3">{{ $transaction->created_at }}</div>
+                  <div class="col-2 col-md-3">Status Transaksi {{ $transaction->transaction_status }}</div>
                   <div class="col-2 col-md-1 d-none d-sm-block">
                     <img
                       src="/assets/images/dashboard-arrow-right.svg"
@@ -100,6 +77,7 @@
                 </div>
               </div>
             </a>
+            @endforeach            
           </div>
         </div>
       </div>

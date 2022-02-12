@@ -40,7 +40,7 @@
                 alt=""
                 class="rounded-circle mr-2 profile-picture"
               />
-              Hi, Admin
+              Hi, {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('home') }}">Home</a>
@@ -60,7 +60,7 @@
         <!-- Mobile Menu -->
         <ul class="navbar-nav d-flex flex-row d-lg-none ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#"> Hi, Admin </a>
+            <a class="nav-link" href="#"> Hi, {{ Auth::user()->name }} </a>
           </li>
           <li class="nav-item">
             <a class="nav-link d-inline-block" href="{{ route('home') }}"> Home </a>

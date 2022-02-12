@@ -40,12 +40,15 @@
                 alt=""
                 class="rounded-circle mr-2 profile-picture"
               />
-              Hi, Seller
+              Hi, {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('home') }}l">Home</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/">Logout</a>
+              <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
             </div>
           </li>
           <li class="nav-item">
@@ -57,13 +60,16 @@
         <!-- Mobile Menu -->
         <ul class="navbar-nav d-flex flex-row d-lg-none ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#"> Hi, Seller </a>
+            <a class="nav-link" href="#"> Hi, {{ Auth::user()->name }} </a>
           </li>
           <li class="nav-item">
             <a class="nav-link d-inline-block" href="{{ route('home') }}"> Home </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/">Logout</a>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
           </li>
         </ul>
       </nav>
@@ -84,7 +90,7 @@
               data-accordion="false"
             >
               <li class="nav-item">
-                <a href="{{ route('dashboard-shop') }}" class="nav-link {{ (request()->is('dashboard-shop')) ? 'active' : ''}}">
+                <a href="{{ route('dashboard-shop') }}" class="nav-link {{ (request()->is('seller')) ? 'active' : ''}}">
                   <p>Dashboard</p>
                 </a>
               </li>
