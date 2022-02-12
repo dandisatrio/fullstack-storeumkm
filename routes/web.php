@@ -61,11 +61,13 @@ Route::get('/dashboard-shop/account', [ShopDashboardSettingController::class, 'a
     ->name('dashboard-shop-account');
 
 Route::prefix('seller')
+    ->middleware(['auth', 'seller'])
     ->group(function() {
         Route::get('/', [ShopDashboardController::class, 'index'])->name('dashboard-shop');
 });
 
-Route::group(['middleware' => ['auth']], function() {
+
+Route::group(['middleware' => ['auth', 'customer']], function() {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');

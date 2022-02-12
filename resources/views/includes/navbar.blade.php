@@ -59,10 +59,15 @@
               Hi, {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>
-              <a class="dropdown-item" href="{{ route('dashboard-account') }}"
-                >Settings</a
-              >
+              @if(Auth::check() && (Auth::user()->roles === 'ADMIN'))
+              <a class="dropdown-item" href="{{ url('/admin') }}">Dashboard</a>
+              @elseif(Auth::check() && (Auth::user()->roles === 'SELLER'))
+              <a class="dropdown-item" href="{{ route('dashboard-shop') }}">Dashboard</a>
+              <a class="dropdown-item" href="{{ route('dashboard-shop-account') }}">Settings</a>
+              @else
+              <a class="dropdown-item" href="{{ route('dashboard') }}">Dashboard</a>                
+              <a class="dropdown-item" href="{{ route('dashboard-account') }}">Settings</a>
+              @endif              
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
                 Logout
@@ -92,11 +97,11 @@
         <ul class="navbar-nav d-block d-lg-none">
           <li class="nav-item">
             <a class="nav-link" href="#">
-              Hi, User
+              Hi, {{ Auth::user()->name }}
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-inline-block" href="#">
+            <a class="nav-link d-inline-block" href="{{ route('cart') }}">
               Cart
             </a>
           </li>
