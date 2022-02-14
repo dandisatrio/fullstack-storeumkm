@@ -24,7 +24,7 @@ class DashboardTransactionController extends Controller
     {
         $transaction = Transaction::with(['transactionDetail'])->findOrFail($id);
 
-        $products = TransactionDetail::with(['transaction.user','product.galleries'])->where('transactions_id', $id)->get();
+        $products = TransactionDetail::with(['transaction','product.galleries'])->where('transactions_id', $id)->get();
 
         $shippings_status = TransactionDetail::where('transactions_id', $id)->value('shipping_status');
 

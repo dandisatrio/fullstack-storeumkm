@@ -47,23 +47,26 @@ Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
-Route::get('/dashboard-shop/products', [DashboardProductController::class, 'index'])
+
+Route::get('/products', [DashboardProductController::class, 'index'])
     ->name('dashboard-shop-products');
-Route::get('/dashboard-shop/products/create', [DashboardProductController::class, 'create'])
+Route::get('/products/create', [DashboardProductController::class, 'create'])
     ->name('dashboard-shop-product-create');
-Route::get('/dashboard-shop/products/{id}', [DashboardProductController::class, 'detail'])
+Route::get('/products/{id}', [DashboardProductController::class, 'detail'])
     ->name('dashboard-shop-product-details');
-Route::get('/dashboard-shop/account', [ShopDashboardSettingController::class, 'account'])
+Route::get('/account', [ShopDashboardSettingController::class, 'account'])
     ->name('dashboard-shop-account');
 
 Route::prefix('seller')
     ->middleware(['auth', 'seller'])
     ->group(function() {
         Route::get('/', [ShopDashboardController::class, 'index'])->name('dashboard-shop');
-        Route::get('/dashboard-shop/transactions', [ShopDashboardTransactionController::class, 'index'])
+        Route::get('/transactions', [ShopDashboardTransactionController::class, 'index'])
             ->name('dashboard-shop-transactions');
-        Route::get('/dashboard-shop/transactions/{id}', [ShopDashboardTransactionController::class, 'detail'])
+        Route::get('/transactions/{id}', [ShopDashboardTransactionController::class, 'detail'])
             ->name('dashboard-shop-transaction-details');
+        Route::post('/transactions/{id}', [ShopDashboardTransactionController::class, 'update'])
+            ->name('dashboard-shop-transaction-update');
 });
 
 

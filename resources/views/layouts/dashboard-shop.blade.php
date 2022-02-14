@@ -95,12 +95,12 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard-shop-products') }}" class="nav-link {{ (request()->is('dashboard-shop/products*')) ? 'active' : ''}}">
+                <a href="{{ route('dashboard-shop-products') }}" class="nav-link {{ (request()->is('seller/products*')) ? 'active' : ''}}">
                   <p>Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard-shop-transactions') }}" class="nav-link {{ (request()->is('dashboard-shop/transactions*')) ? 'active' : ''}}">
+                <a href="{{ route('dashboard-shop-transactions') }}" class="nav-link {{ (request()->is('seller/transactions*')) ? 'active' : ''}}">
                   <p>Transactions</p>
                 </a>
               </li>
