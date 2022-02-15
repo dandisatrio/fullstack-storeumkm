@@ -36,14 +36,14 @@
               aria-expanded="false"
             >
               <img
-                src="/assets/images/icon-user.png"
+                src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
                 alt=""
                 class="rounded-circle mr-2 profile-picture"
               />
               Hi, {{ Auth::user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('home') }}l">Home</a>
+              <a class="dropdown-item" href="{{ route('home') }}">Home</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" >Logout</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -110,8 +110,10 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <p>Sign Out</p>
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" ><p>Sign Out</p></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                  @csrf
+                </form>
                 </a>
               </li>
             </ul>

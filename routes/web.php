@@ -47,16 +47,6 @@ Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
-
-Route::get('/products', [DashboardProductController::class, 'index'])
-    ->name('dashboard-shop-products');
-Route::get('/products/create', [DashboardProductController::class, 'create'])
-    ->name('dashboard-shop-product-create');
-Route::get('/products/{id}', [DashboardProductController::class, 'detail'])
-    ->name('dashboard-shop-product-details');
-Route::get('/account', [ShopDashboardSettingController::class, 'account'])
-    ->name('dashboard-shop-account');
-
 Route::prefix('seller')
     ->middleware(['auth', 'seller'])
     ->group(function() {
@@ -67,6 +57,26 @@ Route::prefix('seller')
             ->name('dashboard-shop-transaction-details');
         Route::post('/transactions/{id}', [ShopDashboardTransactionController::class, 'update'])
             ->name('dashboard-shop-transaction-update');
+
+        Route::get('/products', [DashboardProductController::class, 'index'])
+            ->name('dashboard-shop-products');
+
+        Route::get('/products/create', [DashboardProductController::class, 'create'])
+            ->name('dashboard-shop-product-create');
+        Route::post('/products', [DashboardProductController::class, 'store'])
+            ->name('dashboard-shop-product-store');
+            
+        Route::get('/products/{id}', [DashboardProductController::class, 'detail'])
+            ->name('dashboard-shop-product-details');
+        Route::post('/products/{id}', [DashboardProductController::class, 'update'])
+            ->name('dashboard-shop-product-update');
+        Route::post('/products/gallery/upload', [DashboardProductController::class, 'uploadGallery'])
+            ->name('dashboard-shop-product-gallery-upload');
+        Route::get('/products/gallery/delete/{id}', [DashboardProductController::class, 'deleteGallery'])
+            ->name('dashboard-shop-product-gallery-delete');
+
+        Route::get('/account', [ShopDashboardSettingController::class, 'account'])
+            ->name('dashboard-shop-account');
 });
 
 

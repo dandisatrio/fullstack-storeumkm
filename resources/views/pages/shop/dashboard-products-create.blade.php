@@ -18,7 +18,18 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12">
-          <form action="">
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
+          <form action="{{ route('dashboard-shop-product-store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="shops_id" value="{{ $shop_id }}">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -29,8 +40,7 @@
                         type="text"
                         class="form-control"
                         id="name"
-                        aria-describedby="name"
-                        name="storeName"
+                        name="name"
                       />
                     </div>
                   </div>
@@ -40,39 +50,30 @@
                       <input
                         type="number"
                         class="form-control"
-                        id="price"
-                        aria-describedby="price"
                         name="price"
                       />
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
+                      <label>Kategori Product</label>
+                      <select name="categories_id" class="form-control">
+                        @foreach ($categories as $category)
+                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
                       <label for="description">Description</label>
-                      <textarea
-                        name="descrioption"
-                        id=""
-                        cols="30"
-                        rows="4"
-                        class="form-control"
-                      >
-                      </textarea>
+                      <textarea name="description" id="editor"></textarea>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="thumbnails">Thumbnails</label>
-                      <input
-                        type="file"
-                        multiple
-                        class="form-control pt-1"
-                        id="thumbnails"
-                        aria-describedby="thumbnails"
-                        name="thumbnails"
-                      />
-                      <small class="text-muted">
-                        Kamu dapat memilih lebih dari satu file
-                      </small>
+                      <input type="file" name="photo" class="form-control" />
                     </div>
                   </div>
                 </div>
@@ -95,3 +96,10 @@
   </section>
 </div>
 @endsection
+
+@push('addon-scripts')
+<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace("editor");
+</script>
+@endpush
