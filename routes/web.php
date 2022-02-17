@@ -77,6 +77,8 @@ Route::prefix('seller')
 
         Route::get('/account', [ShopDashboardSettingController::class, 'account'])
             ->name('dashboard-shop-account');
+        Route::post('/account/{redirect}', [ShopDashboardSettingController::class, 'update'])
+            ->name('dashboard-shop-account-redirect');
 });
 
 
@@ -109,4 +111,3 @@ Route::prefix('admin')
     });
 
 Auth::routes();
-

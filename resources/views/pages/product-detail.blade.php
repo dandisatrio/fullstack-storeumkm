@@ -71,7 +71,11 @@
               <div class="price">Rp. {{ number_format($product->price, 0, ',', '.') }}</div>
             </div>
             <div class="col-lg-2" data-aos="zoom-in">
-              @auth
+              @if(Auth::check() && (Auth::user()->roles === 'ADMIN'))
+
+              @elseif(Auth::check() && (Auth::user()->roles === 'SELLER'))
+
+              @elseif(Auth::check() && (Auth::user()->roles === 'CUSTOMER'))
               <form action="{{ route('product-detail-add', $product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <button
@@ -87,7 +91,7 @@
                 href="{{ route('login') }}"
                 >Sign in to add
               </a>
-              @endauth              
+              @endif           
             </div>
           </div>
         </div>

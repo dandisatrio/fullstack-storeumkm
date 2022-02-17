@@ -77,6 +77,11 @@
               </form>
             </div>
           </li>
+          @if(Auth::check() && (Auth::user()->roles === 'ADMIN'))
+
+          @elseif(Auth::check() && (Auth::user()->roles === 'SELLER'))
+
+          @else
           <li class="nav-item">
             <a class="nav-link d-inline-block mt-2" href="{{ route('cart') }}">
               @php
@@ -91,6 +96,7 @@
               
             </a>
           </li>
+          @endif          
         </ul>
 
         <!-- Mobile Menu -->

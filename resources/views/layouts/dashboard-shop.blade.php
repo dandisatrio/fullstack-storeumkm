@@ -105,7 +105,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('dashboard-shop-account') }}" class="nav-link {{ (request()->is('dashboard-shop/account*')) ? 'active' : ''}}">
+                <a href="{{ route('dashboard-shop-account') }}" class="nav-link {{ (request()->is('seller/account*')) ? 'active' : ''}}">
                   <p>My Account</p>
                 </a>
               </li>

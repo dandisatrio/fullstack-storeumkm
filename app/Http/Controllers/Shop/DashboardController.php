@@ -21,9 +21,9 @@ class DashboardController extends Controller
             return $carry + $item->price;
         });
 
-        $transaction = TransactionDetail::with(['product.shop.user'])->whereHas('product.shop.user', function($query) {
-            $query->where('id', Auth::user()->id);
-        })->get();
+        // $transaction = TransactionDetail::with(['product.shop.user'])->whereHas('product.shop.user', function($query) {
+        //     $query->where('id', Auth::user()->id);
+        // })->get();
 
         $transaction_data = Transaction::with(['transactionDetail.product.shop.user'])->whereHas('transactionDetail.product.shop.user', function($query) {
             $query->where('id', Auth::user()->id);
@@ -32,7 +32,7 @@ class DashboardController extends Controller
         // return dd($transaction);
 
         return view('pages.shop.dashboard', [
-            'transaction_count' => $transaction->count(),
+            'transaction_count' => $transaction_data->count(),
             'revenue' => $revenue,
             'transaction_data' => $transaction_data,
         ]);
