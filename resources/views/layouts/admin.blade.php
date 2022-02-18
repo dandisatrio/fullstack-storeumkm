@@ -115,7 +115,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link {{ (request()->is('dashboard-admin/transactions*')) ? 'active' : ''}}">
+                <a href="{{ route('transaction.index') }}" class="nav-link {{ (request()->is('admin/transaction*')) ? 'active' : ''}}">
                   <p>Transactions</p>
                 </a>
               </li>
