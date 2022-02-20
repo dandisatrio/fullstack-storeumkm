@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col-md-8 align-self-center">
             <h2>Kecamatan Negeri Katon</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum quisque aliquet dui neque eleifend. Purus purus facilisi vehicula tincidunt arcu, mi.</p>
+            <p>Mempunyai wadah untuk para pelaku UMKM di daerah Kecamatan Negeri Katon, yaitu sistem marketplace UMKM Negeri Katon yang dapat digunakan oleh para pelaku UMKM sehingga dapat mempermudah para pelaku UMKM  untuk menjual produk mereka, banyak produk-produk yang berasal dari daerah Kecamatan Negeri Katon. Cek Sekarang Produknya Segera!!!</p>
             <br>
             <a href="#products"><button class="btn btn-sm btn-warning p-3 border-5">Beli Sekarang</button></a>
           </div>
