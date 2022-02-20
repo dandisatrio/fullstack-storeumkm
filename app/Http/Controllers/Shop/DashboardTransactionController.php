@@ -23,19 +23,25 @@ class DashboardTransactionController extends Controller
 
     public function detail(Request $request, $id) 
     {
-        // $products = TransactionDetail::with(['transaction','product.galleries'])->where('transactions_id', $id)->get();
+        $products = TransactionDetail::with(['transaction','product.galleries'])->where('transactions_id', $id)->get();
 
-        // $transaction = Transaction::with(['transactionDetail'])->findOrFail($id);
+        $transaction = Transaction::with(['transactionDetail'])->findOrFail($id);
 
-        // return view('pages.shop.dashboard-transactions-details', [
-        //     'products' => $products,
-        //     'transaction' => $transaction,
-        // ]);
+        return view('pages.shop.dashboard-transactions-details', [
+            'products' => $products,
+            'transaction' => $transaction,
+        ]);
     }
 
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        // $data = $request->all();        
+
+        // $item = TransactionDetail::with(['transaction'])->where('transactions_id', $id)->get();
+
+        // $data['shipping_status'] = $request->shipping_status;
+
+        // $item->update($data);
 
         // $item = Transaction::with(['transactionDetail'])->findOrFail($id);                                                                                                                                                       
 
@@ -47,6 +53,6 @@ class DashboardTransactionController extends Controller
         
         // return dd($item);
 
-        return redirect()->route('dashboard-shop-transaction-details', $id);
+        // return redirect()->route('dashboard-shop-transaction-details', $id);
     }
 }

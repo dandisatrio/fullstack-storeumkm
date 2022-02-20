@@ -4,30 +4,53 @@
 
 @section('content')
   <div class="page-content">
-    <section class="store-trend-categories mb-3">
+    <section class="store-trend-hero mt-4 mb-5">
       <div class="container">
-        <div class="row mb-3">
-          <div class="col-12">
-            <h5>Kategori</h5>
+        <div class="row">
+          <div class="col-md-8 align-self-center">
+            <h2>Kecamatan Negeri Katon</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum quisque aliquet dui neque eleifend. Purus purus facilisi vehicula tincidunt arcu, mi.</p>
+            <br>
+            <a href="#products"><button class="btn btn-sm btn-warning p-3 border-5">Beli Sekarang</button></a>
+          </div>
+          <div class="col-md-4 d-none d-md-block">
+            <img src="assets/images/hero.png" class="w-100" alt="">
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="store-trend-hero mb-3">
+      <div class="container">
         <div class="row">
-          @forelse ($categories as $category)
-          <div class="col-6 col-md-3 col-lg-2">
-            <a href="{{ route('categories-detail', $category->slug) }}" class="component-categories d-block">
-                <div class="categories-image">
-                    <img src="{{ Storage::url($category->photo) }}" alt="" class="w-100" />
+          <div class="col-md-12">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner" style="height: 180px;">
+                <div class="carousel-item active">
+                  <img src="/assets/images/discount-banner.png" class="d-block w-100" alt="...">
                 </div>
-                <p class="categories-text">
-                    {{ $category->name }}
-                </p>
-            </a>
-          </div>
-          @empty
-            <div class="col-6 text-center py-5">
-              No Categories Found
+                <div class="carousel-item">
+                  <img src="/assets/images/discount-banner.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                  <img src="/assets/images/discount-banner.png" class="d-block w-100" alt="...">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-target="#carouselExampleCaptions" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </button>
             </div>
-          @endforelse
+          </div>
         </div>
       </div>
     </section>
@@ -60,7 +83,7 @@
       </div>
     </section>
 
-    <section class="product-container">
+    <section class="product-container" id="products">
       <div class="container">
         <div class="row mb-3">
           <div class="col-12">
