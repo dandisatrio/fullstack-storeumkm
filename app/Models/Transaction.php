@@ -12,7 +12,9 @@ class Transaction extends Model
         'shipping_price',
         'total_price',
         'transaction_status',
-        'code'
+        'code',
+        'shipping_status',
+        'resi'
     ];
 
     protected $hidden = [

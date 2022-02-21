@@ -131,8 +131,8 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td style="color: red;">{{ $shippings_status }}</td>
-                        <td>{{ $resi_code }}</td>
+                        <td style="color: red;">{{ $transaction->shipping_status }}</td>
+                        <td>{{ $transaction->resi }}</td>
                       </tr>
                     </tbody>
                   </table>
