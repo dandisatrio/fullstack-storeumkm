@@ -37,6 +37,14 @@ Run the database migrations (**Set the database connection in .env before migrat
 
     php artisan migrate
     
+Run DB Seeder Indoregion
+
+    php artisan db:seed --class=IndoRegionSeeder
+
+Run DB Seeder Users
+
+    php artisan db:seed
+    
 Run Storage Link
     
     php artisan storage:link
