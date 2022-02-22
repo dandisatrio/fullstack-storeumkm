@@ -13,27 +13,26 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $transaction_success = TransactionDetail::with(['product.shop.user'])->whereHas('product.shop.user', function($query) {
+
+       
+        
+        $transaction = Transaction::with(['transactionDetail.product.shop.user'])->whereHas('transactionDetail.product.shop.user', function ($query) {
             $query->where('id', Auth::user()->id);
-        })->where('shipping_status', 'SUCCESS')->get();
+        })->where('shipping_status', 'success')->sum('total_price');
 
-        $revenue = $transaction_success->reduce(function ($carry, $item) {
-            return $carry + $item->price;
-        });
-
-        // $transaction = TransactionDetail::with(['product.shop.user'])->whereHas('product.shop.user', function($query) {
-        //     $query->where('id', Auth::user()->id);
-        // })->get();
+        if ($transaction == null) {
+            $total = 0;
+        } else {
+            $total = $transaction - 30000;
+        }
 
         $transaction_data = Transaction::with(['transactionDetail.product.shop.user'])->whereHas('transactionDetail.product.shop.user', function($query) {
             $query->where('id', Auth::user()->id);
         })->get();
 
-        // return dd($transaction);
-
         return view('pages.shop.dashboard', [
             'transaction_count' => $transaction_data->count(),
-            'revenue' => $revenue,
+            'revenue' => $total,
             'transaction_data' => $transaction_data,
         ]);
     }
