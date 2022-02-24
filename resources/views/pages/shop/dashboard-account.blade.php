@@ -117,7 +117,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Ganti Foto</label>
-                      <input type="file" class="form-control" name="photo" placeholder="Photo" />
+                      <input type="file" class="form-control" name="photo" placeholder="Photo" required />
                     </div>
                   </div>
                 </div>

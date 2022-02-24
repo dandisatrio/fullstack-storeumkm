@@ -199,8 +199,8 @@
   var transactionDetails = new Vue({
     el: "#transactionDetails",
     data: {
-      status: "SHIPPING",
-      resi: "BDO12308012132",
+      status: "{{ $transaction->shipping_status }}",
+      resi: "{{ $transaction->resi }}",
     },
   });
 </script>
