@@ -20,6 +20,8 @@ class CreateTransactionsTable extends Migration
             $table->integer('total_price');
             $table->string('transaction_status'); // PENDING/SUCCESS/FAILED
             $table->string('code');
+            $table->string('resi');
+            $table->string('shipping_status'); // PENDING/SHIPPING/SUCCESS
 
             $table->softDeletes();
             $table->timestamps();

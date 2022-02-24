@@ -35,24 +35,12 @@ class DashboardTransactionController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $data = $request->all();        
+        $data = $request->all();
 
-        // $item = TransactionDetail::with(['transaction'])->where('transactions_id', $id)->get();
+        $item = Transaction::findOrFail($id);
 
-        // $data['shipping_status'] = $request->shipping_status;
+        $item->update($data);
 
-        // $item->update($data);
-
-        // $item = Transaction::with(['transactionDetail'])->findOrFail($id);                                                                                                                                                       
-
-        // $item = Transaction::with(['transactionDetail'])->whereHas('transactionDetail', function($query) use ($id) {
-        //     $query->where('transactions_id', $id);
-        // })->findOrFail($id);
-
-        // $item->update($data);
-        
-        // return dd($item);
-
-        // return redirect()->route('dashboard-shop-transaction-details', $id);
+        return redirect()->route('dashboard-shop-transaction-details', $id);
     }
 }

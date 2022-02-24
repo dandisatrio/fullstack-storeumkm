@@ -36,7 +36,7 @@
               aria-expanded="false"
             >
               <img
-                src="/assets/images/icon-user.png"
+                src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
                 alt=""
                 class="rounded-circle mr-2 profile-picture"
               />

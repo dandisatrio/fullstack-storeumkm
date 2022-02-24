@@ -8,7 +8,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">#STORE160222</h1>
+          <h1 class="m-0">#{{ $transaction->code }}</h1>
         </div>
       </div>
     </div>
@@ -199,8 +199,8 @@
   var transactionDetails = new Vue({
     el: "#transactionDetails",
     data: {
-      status: "SHIPPING",
-      resi: "BDO12308012132",
+      status: "{{ $transaction->shipping_status }}",
+      resi: "{{ $transaction->resi }}",
     },
   });
 </script>

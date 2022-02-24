@@ -77,6 +77,7 @@
                   <div class="col-3 col-md-2">{{ $transaction->code }}</div>
                   <div class="col-4 col-md-3">{{ $transaction->created_at }}</div>
                   <div class="col-2 col-md-3">Status Transaksi {{ $transaction->transaction_status }}</div>
+                  <div class="col-2 col-md-3">Status Pengiriman {{ $transaction->shipping_status }}</div>
                   <div class="col-2 col-md-1 d-none d-sm-block">
                     <img
                       src="/assets/images/dashboard-arrow-right.svg"
