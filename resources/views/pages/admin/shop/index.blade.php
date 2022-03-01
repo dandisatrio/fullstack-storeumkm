@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-body">
                     <a href="{{ route('shop.create') }}" class="btn btn-primary mb-3">
-                    + Tambah Foto Baru
+                    + Daftarkan Toko
                     </a>
                     <div class="table-responsive">
                         <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">

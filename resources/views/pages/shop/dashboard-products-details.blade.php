@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Shirup Marzzan</h1>
+            <h1 class="m-0">Edit Product</h1>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label>Kategori Product</label>
+                        <label>Category Product</label>
                         <select name="categories_id" class="form-control">
                           <option value="{{ $product->categories_id }}">Tidak diganti {{ $product->category->name }}</option>
                           @foreach ($categories as $category)

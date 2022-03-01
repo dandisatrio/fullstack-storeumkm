@@ -22,6 +22,15 @@ class DashboardSettingController extends Controller
     {
         $data = $request->all();
         $item = Auth::user();
+
+        if($request->password)
+        {
+            $data['password'] =  bcrypt($request->password);
+        }
+        else 
+        {
+            unset($data['password']);
+        }
         
         $item->update($data);
         

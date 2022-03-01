@@ -115,6 +115,13 @@
                       />
                     </div>
                   </div>
+                  <div class="col-md-4">
+                    <div class="form-group mb-2">
+                      <label>Ubah Password</label>
+                      <input type="password" class="form-control" name="password" />
+                      <small>Kosongkan jika tidak ingin ganti password</small>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
                   <div class="col text-right">
