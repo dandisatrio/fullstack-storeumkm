@@ -105,6 +105,39 @@
           </div>
         </div>
       </section>
+
+      <hr>
+
+      <section class="store-review">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-lg-8 mt-3 mb-3">
+              <h5>Customer Review</h5>
+            </div>
+          </div>
+          <div class="row">
+            @forelse ($reviews as $review)
+            <div class="col-12 col-lg-8">
+              <ul class="list-unstyled">
+                <li class="media">
+                  <div class="media-body mb-0">
+                    <h5 class="mt-2">{{ $review->user->name }}</h5>
+                    <div class="mb-1">
+                      <span>⭐ {{ $review->rating }}</span>
+                    </div>
+                    {{ $review->comment }}
+                  </div>
+                </li>
+              </ul>
+            </div>
+            @empty
+            <div class="col-12 col-lg-8">
+              Belum ada Reviews Produk
+            </div>
+            @endforelse            
+          </div>
+        </div>
+      </section>
     </div>
   </div>
 @endsection
