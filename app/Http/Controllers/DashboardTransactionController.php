@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\TestimonialProduct;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
@@ -32,5 +34,17 @@ class DashboardTransactionController extends Controller
             'transaction' => $transaction,
             'products' => $products
         ]);
+    }
+
+    public function review(Request $request)
+    {
+        $data = $request->all();
+        $data['users_id'] = Auth::user()->id;
+
+        TestimonialProduct::create($data);
+
+        // return dd($data);
+
+        return redirect()->back();
     }
 }

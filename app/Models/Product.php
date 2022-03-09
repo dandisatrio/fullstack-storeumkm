@@ -37,4 +37,9 @@ class Product extends Model
     {
         return $this->belongsTo(Shop::class, 'shops_id', 'id');
     }
+
+    public function testimonials()
+    {
+        return $this->hasMany(TestimonialProduct::class, 'products_id', 'id');
+    }
 }

@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $shops = Shop::take(6)->get();
-        $products = Product::with(['galleries'])->take(8)->get();
+        $products = Product::with(['galleries'])->take(8)->orderBy('created_at','desc')->get();
 
         return view('pages.home', [
             'shops' => $shops,

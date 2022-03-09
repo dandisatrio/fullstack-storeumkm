@@ -100,7 +100,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('product.index') }}" class="nav-link {{ (request()->is('admin/product*')) ? 'active' : ''}}">
+                <a href="{{ route('product.index') }}" class="nav-link {{ (request()->is('admin/product')) ? 'active' : ''}}">
                   <p>Products</p>
                 </a>
               </li>

@@ -26,11 +26,11 @@
                   <table class="table table-borderless">
                     <thead>
                       <tr>
-                        <th style="width: 30%;">Image</th>
-                        <th style="width: 25%;">Nama Produk</th>
-                        <th style="width: 25%;">Nama Toko</th>
+                        <th style="width: 25%;">Image</th>
+                        <th style="width: 20%;">Nama Produk</th>
+                        <th style="width: 20%;">Nama Toko</th>
                         <th>Harga</th>
-                        {{-- <th>Quantity</th> --}}
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -45,7 +45,65 @@
                         <td>{{ $product->product->name }}</td>
                         <td>{{ $product->product->shop->name }}</td>
                         <td>Rp. {{ number_format($product->product->price, 0, ',', '.') }}</td>
-                        {{-- <td>1</td> --}}
+                        <td>
+                          @if ($transaction->shipping_status == 'SUCCESS')
+                          <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalReview{{ $product->product->id }}">
+                            Review Produk
+                          </button>
+                          @endif
+                          
+                          <!-- Modal -->
+                          <div class="modal fade" id="modalReview{{ $product->product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">{{ $product->product->name }}</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="container-fluid">
+                                    <form action="{{ route('dashboard-transaction-review') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="products_id" value="{{ $product->product->id }}">
+                                    <div class="row justify-content-center mb-3">
+                                      <img
+                                        src="{{ Storage::url($product->product->galleries->first()->photos ?? '') }}"
+                                        class="w-50"
+                                      />
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-sm-12">
+                                        <div class="rating">
+                                          <input type="radio" name="rating" value="5" id="5">
+                                          <label for="5">☆</label>
+                                          <input type="radio" name="rating" value="4" id="4">
+                                          <label for="4">☆</label>
+                                          <input type="radio" name="rating" value="3" id="3">
+                                          <label for="3">☆</label>
+                                          <input type="radio" name="rating" value="2" id="2">
+                                          <label for="2">☆</label> 
+                                          <input type="radio" name="rating" value="1" id="1">
+                                          <label for="1">☆</label>           
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-12">
+                                        <textarea name="comment" rows="4" class="form-control" placeholder="Berikan review produk"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="submit" class="btn btn-primary">Simpan Ulasan</button>
+                                </div>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>
@@ -58,9 +116,9 @@
                   <table class="table table-borderless">
                     <thead>
                       <tr>
-                        <th style="width: 30%;">Tanggal Transaksi</th>
-                        <th style="width: 25%;">Biaya Pengiriman</th>
-                        <th style="width: 25%;">Total Transaksi</th>
+                        <th style="width: 25%;">Tanggal Transaksi</th>
+                        <th style="width: 20%;">Biaya Pengiriman</th>
+                        <th style="width: 20%;">Total Transaksi (+unique)</th>
                         <th>Status Transaksi</th>
                       </tr>
                     </thead>
