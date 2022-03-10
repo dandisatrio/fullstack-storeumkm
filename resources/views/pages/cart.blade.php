@@ -205,9 +205,8 @@
           <div class="col-6 col-md-6 mt-3">
             <h2>Informasi Penting</h2>
             <p>
-              Proses konfirmasi pembayaran akan membutuhkan waktu sekitar 20
-              menit (dari pesan WhatsApp dikirim) jika menggunakan metode
-              pembayaran manual. Mohon menunggu dengan sabar dan terima kasih.
+              Proses konfirmasi pembayaran akan diproses jika sudah mengirimkan bukti transfer sesuai total pembayaran melalui whatsapp admin. 
+              Mohon menunggu dengan sabar dan terima kasih.
             </p>
             <div class="row d-flex">
               <div class="col-md-8">

@@ -20,7 +20,7 @@
       </div>
     </section>
 
-    <section class="store-trend-hero mb-3">
+    <section class="store-trend-hero mb-5">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -57,7 +57,7 @@
 
     <section class="shop-container mb-3">
       <div class="container">
-        <div class="row mb-3">
+        <div class="row mb-3 text-center">
           <div class="col-12">
             <h5>Toko Tersedia</h5>
           </div>
@@ -85,7 +85,7 @@
 
     <section class="product-container" id="products">
       <div class="container">
-        <div class="row mb-3">
+        <div class="row mb-3 text-center">
           <div class="col-12">
             <h5>Produk Terbaru</h5>
           </div>
