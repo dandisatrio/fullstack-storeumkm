@@ -452,11 +452,11 @@ h5 {
 .rating {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: center
+  justify-content: center;
 }
 
 .rating>input {
-  display: none
+  display: none;
 }
 
 .rating>label {
@@ -464,25 +464,25 @@ h5 {
   width: 1em;
   font-size: 46px;
   color: #FFD600;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .rating>label::before {
   content: "\2605";
   position: absolute;
-  opacity: 0
+  opacity: 0;
 }
 
 .rating>label:hover:before,
 .rating>label:hover~label:before {
-  opacity: 1 !important
+  opacity: 1 !important;
 }
 
 .rating>input:checked~label:before {
-  opacity: 1
+  opacity: 1;
 }
 
 .rating:hover>input:checked~label:before {
-  opacity: 0.4
+  opacity: 0.4;
 }
 /* Radio Star Review */
