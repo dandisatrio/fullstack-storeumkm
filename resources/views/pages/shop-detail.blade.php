@@ -9,6 +9,14 @@
         <div class="row mb-3">
           <div class="col-12">
             <h5>{{ $shop->name }}</h5>
+            <p>
+              @if(Cache::has('is_online' . $user->id))
+              <span class="text-success">Online</span>
+              @else
+                  <span class="text-secondary">Offline</span>
+              @endif
+              <span> {{ \Carbon\Carbon::parse($user->last_seen)->diffForHumans() }} </span>
+            </p>
           </div>
         </div>
         <div class="row">
