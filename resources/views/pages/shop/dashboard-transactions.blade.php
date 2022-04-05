@@ -9,6 +9,7 @@
       <div class="row mb-2">
         <div class="col-sm-6">
           <h1 class="m-0">Transactions</h1>
+          <a href="{{ route('dashboard-shop-transaction-generate-pdf') }}" class="btn btn-primary" target="_blank">CETAK Transaksi</a>
         </div>
       </div>
     </div>

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shop;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class DashboardTransactionController extends Controller
 {
@@ -42,5 +46,18 @@ class DashboardTransactionController extends Controller
         $item->update($data);
 
         return redirect()->route('dashboard-shop-transaction-details', $id);
+    }
+
+    public function generate_pdf()
+    {
+    	$transactions = Transaction::with(['transactionDetail.product.shop.user'])->whereHas('transactionDetail.product.shop.user', function($query) {
+            $query->where('id', Auth::user()->id);
+        })->get();
+
+        $print = PDF::loadView('pages.shop.dashboard-transactions-print', [
+            'transactions' => $transactions,
+        ]);
+
+        return $print->stream();
     }
 }
