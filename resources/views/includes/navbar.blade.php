@@ -26,6 +26,10 @@
           <li class="nav-item">
             <a class="nav-link {{ (request()->is('categories*')) ? 'active' : ''}}" href="{{ route('categories') }}">Category</a>
           </li>
+            <a href="{{ route('search') }}" class="btn bg-transparent" id="search">🔍</a>
+          </li>
+          </form>
+          
           @guest
           <li class="nav-item">
             <a class="nav-link" href="{{ route('register') }}">Sign Up</a>

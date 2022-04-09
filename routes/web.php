@@ -35,6 +35,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/pencarian', [HomeController::class, 'search'])->name('search');
+
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/categories/{id}', [CategoryController::class, 'detail'])->name('categories-detail');
 
@@ -58,6 +60,8 @@ Route::prefix('seller')
             ->name('dashboard-shop-transaction-details');
         Route::post('/transactions/{id}', [ShopDashboardTransactionController::class, 'update'])
             ->name('dashboard-shop-transaction-update');
+        Route::get('/cetak-pdf', [ShopDashboardTransactionController::class, 'generate_pdf'])
+            ->name('dashboard-shop-transaction-generate-pdf');
 
         Route::get('/products', [DashboardProductController::class, 'index'])
             ->name('dashboard-shop-products');
