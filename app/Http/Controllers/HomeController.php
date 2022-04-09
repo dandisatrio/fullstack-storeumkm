@@ -24,4 +24,17 @@ class HomeController extends Controller
             'products' => $products
         ]);
     }
+
+    public function search()
+    {
+        $products = Product::latest();
+
+        if(request('search')) {
+            $products->where('name', 'like', '%' . request('search') . '%');
+        }
+
+        return view('pages.search', [
+            'products' => $products->get()
+        ]);
+    }
 }
