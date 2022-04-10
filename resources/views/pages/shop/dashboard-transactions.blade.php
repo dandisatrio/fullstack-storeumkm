@@ -8,8 +8,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Transactions</h1>
-          <a href="{{ route('dashboard-shop-transaction-generate-pdf') }}" class="btn btn-primary" target="_blank">CETAK Transaksi</a>
+          <h1 class="m-0">Transactions</h1>          
         </div>
       </div>
     </div>
@@ -17,6 +16,9 @@
 
   <section class="content">
     <div class="container-fluid">
+      <div class="my-2">
+        <a href="{{ route('dashboard-shop-transaction-generate-pdf') }}" class="btn btn-sm btn-success" target="_blank">CETAK Transaksi</a>
+      </div>
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-12 col-12">
