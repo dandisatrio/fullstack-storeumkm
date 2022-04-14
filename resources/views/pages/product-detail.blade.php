@@ -67,8 +67,13 @@
           <div class="row">
             <div class="col-lg-8">
               <h1>{{ $product->name }}</h1>
-              <div class="owner">By {{ $product->shop->name }}</div>
-              <div class="price">Rp. {{ number_format($product->price, 0, ',', '.') }}</div>
+              <div class="owner">
+                By {{ $product->shop->name }} 
+              </div>
+              <div>
+                <span><a href="{{ route('shop-details', $shop->slug) }}" class="btn btn-sm btn-outline-info" style="font-size: 11px;color: #000"><i class="fas fa-store-alt"> Kunjungi Toko</i></a></span>
+              </div>
+              <div class="price mt-3">Rp. {{ number_format($product->price, 0, ',', '.') }}</div>
             </div>
             <div class="col-lg-2" data-aos="zoom-in">
               @if(Auth::check() && (Auth::user()->roles === 'ADMIN'))

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Shop;
 use App\Models\TestimonialProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,9 +16,12 @@ class ProductDetailController extends Controller
         $product = Product::with(['galleries', 'shop'])->where('slug', $id)->firstOrFail();
         $reviews = TestimonialProduct::where('products_id', $product->id)->get();
 
+        $shop = Shop::find($product->shops_id);
+
         return view('pages.product-detail', [
             'product' => $product,
-            'reviews' => $reviews
+            'reviews' => $reviews,
+            'shop' => $shop
         ]);
     }
 
